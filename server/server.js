@@ -6,7 +6,7 @@ const express = require('express');
 const port = process.env.PORT || 3000;
 const publicPath = path.join(`${__dirname}/../public`);
 
-const {generateMessage} = require('./utils/message');
+const {generateMessage, generateLocationMessage} = require('./utils/message');
 
 const app = express();
 
@@ -31,6 +31,12 @@ io.on('connection', (socket) => {
     io.emit('newMessage', generateMessage(message.from, message.text));
     // Calling the callback that the client passed, with data
     callback(message);
+  });
+
+  socket.on('createLocationMessage', (message) => {
+    console.log('createLocationMessage', message);
+    io.emit('newLocationMessage', generateLocationMessage('Admin',
+      message.latitude, message.longitude))
   });
 
   socket.on('disconnect', () => {
