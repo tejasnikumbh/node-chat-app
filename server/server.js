@@ -54,7 +54,9 @@ io.on('connection', (socket) => {
     if(!user) { return }
 
     // Sends a message to all connected sockets of room
-    io.to(user.room).emit('newMessage', generateMessage(message.from, message.text));
+
+    socket.emit('newMessage', generateMessage(`${user.name} (You)`, message.text));
+    socket.broadcast.to(user.room).emit('newMessage', generateMessage(user.name, message.text));
     // Calling the callback that the client passed, with data
     callback(message);
   });

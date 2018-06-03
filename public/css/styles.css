@@ -38,6 +38,15 @@ button:disabled{
   background:#698ea5
 }
 
+.list-item__user {
+  font-weight: 600;
+  color: #3f3f3f;
+}
+.list-item__user:hover {
+  opacity: 0.75;
+  cursor: default;
+}
+
 .centered-form {
   display:flex;
   align-items:center;

@@ -35,12 +35,12 @@ socket.on('disconnect', () => {
 
 socket.on('updateUserList', (users) => {
   console.log(users);
-  var userList = jQuery('<ol></ol>');
+  var userList = jQuery('<ul style="list-style-type:none"></ul>');
 
   users.forEach((user) => {
-    userList.append(jQuery('<li></li>').text(user));
-  })
-  
+    userList.append(jQuery('<li class="list-item__user"></li>').text(user));
+  });
+
   jQuery('#users').html(userList);
 });
 
