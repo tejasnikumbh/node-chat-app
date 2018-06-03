@@ -1,7 +1,7 @@
 const {expect, assert, should} = require('chai');
 const {generateMessage, generateLocationMessage} = require('./message');
 
-describe('Message Generator Tests', () => {
+describe('generateMessage', () => {
   it('should generate a message', () => {
     const from = 'Test User';
     const text = 'Test text';
@@ -12,7 +12,10 @@ describe('Message Generator Tests', () => {
     expect(message.from).to.be.equal(from);
     expect(message.text).to.be.equal(text);
   })
+});
 
+
+describe('generateLocationMessage', () => {
   it('should generate a location message', () => {
     const from = 'Test User';
     const lat = 23.04;

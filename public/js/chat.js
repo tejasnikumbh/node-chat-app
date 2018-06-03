@@ -11,19 +11,22 @@ function scrollToBottom () {
   var newMessageHeight = newMessage.innerHeight();
   var lastMessageHeight = newMessage.prev().innerHeight();
 
-  console.log('clientHeight', clientHeight);
-  console.log('scrollTop', scrollTop);
-  console.log('newMessageHeight', newMessageHeight);
-  console.log('lastMessageHeight', lastMessageHeight);
-  console.log('scrollHeight', scrollHeight);
-
   if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
     messages.scrollTop(scrollHeight);
   }
 }
 
 socket.on('connect', () => {
-  console.log('Connected to server');
+  var params = jQuery.deparam(window.location.search);
+
+  socket.emit('join', params, function (err) {
+    if (err) {
+      alert(err);
+      window.location.href = '/';
+    } else {
+      console.log('No error');
+    }
+  });
 });
 
 socket.on('disconnect', () => {
