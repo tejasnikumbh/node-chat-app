@@ -67,7 +67,8 @@ io.on('connection', (socket) => {
     if(!user) { return }
 
     // Sends a message to all connected sockets of room
-    io.to(user.room).emit('newLocationMessage', generateLocationMessage('Admin',
+    socket.emit('newLocationMessage', generateLocationMessage(`${user.name} (You)`));
+    socket.broadcast.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name,
       message.latitude, message.longitude))
   });
 
