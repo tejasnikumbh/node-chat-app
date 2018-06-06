@@ -24,7 +24,13 @@ socket.on('connect', () => {
       alert(err);
       window.location.href = '/';
     } else {
-      console.log('No error');
+      var template = jQuery('#room-name').html();
+      var html = Mustache.render(template, {
+        roomName: params['room']
+      });
+
+      jQuery('#room-name__container').append(html);
+      console.log('Chat setup complete');
     }
   });
 });
